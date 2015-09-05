@@ -59,17 +59,31 @@ function(){
 //Step - 4
 function getSpinner(){
     var count = 0;
-    function up(){
+    function increment(){
         return ++count;
     }
-    function down(){
+    function decrement(){
         return --count;
     }
 
     return {
-        up :up,
-        down : down
+        up :increment,
+        down : decrement
     }
 }
+
+//alternative
+function getSpinner(){
+    var count = 0;
+    return {
+        up :function(){
+                return ++count;
+            }
+        down : function (){
+            return --count;
+        }
+    };
+}
+
 var spinner = getSpinner();
 
