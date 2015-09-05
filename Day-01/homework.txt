@@ -1,0 +1,46 @@
+1. write a function "after" which will execute the given function only after the given number of times
+
+var f = after(function fn(){
+  console.log("fn is invoked")
+},3);
+
+f()
+f()
+f()
+f() //=> "fn is invoked"
+
+2. write a function "before" which will execute the given function only till given number of times
+
+var f = before(function fn(){
+  console.log("fn is invoked")
+},3);
+
+f() //=> "fn is invoked"
+f() //=> "fn is invoked"
+f() //=> "fn is invoked"
+f()
+
+3. write a function "once" which will execute the given function only once
+
+var f = before(function fn(){
+  console.log("fn is invoked")
+},3);
+
+f() //=> "fn is invoked"
+f() 
+f() 
+
+4. write a function debounce that will execute the given function only after the given time interval is elapsed from the previous execution
+
+var f = before(function fn(){
+  console.log("fn is invoked")
+},3000);
+
+f() => "fn is invoked" (1)
+f() //before 3000 milliseconds, nothing will happen
+
+f() //after 3000 milliseconds of (1) then "fn is invoked"
+
+
+
+
