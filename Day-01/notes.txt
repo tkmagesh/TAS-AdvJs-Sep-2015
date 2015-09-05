@@ -1,0 +1,80 @@
+JavaScript
+==========
+
+Procedural
+Object Oriented
+Functional - X
+    Functions are first class citizens - Functions are data
+    
+    
+Static
+Dynamic - X
+
+Loosely typed
+Strongly typed
+
+function  add( x,  y){
+    var result = x + y;
+    return result;
+}
+
+add(10,20)
+add("10","20")
+add(fn1, fn2)
+add([10,20],[30,40])
+add(10)
+add()
+add(10,20,30,40,50)
+
+$(document).ready(function(){}) -> domNode
+$(function(){}) -> function
+$("#txtName") -> string
+$([domNode1, domNode2])
+$($)
+
+
+this
+arguments
+    -> array like object containing all the values passed to the function
+    
+    
+this
+Function invocation patterns
+1. As a method of an object
+    this -> object
+2. As a function
+    this -> global scope (window in the browser)
+
+
+
+
+
+
+
+
+sum(10,20,30,40)
+    10 + sum(20,30,40)
+         20 + sum(30,40)
+              30 + sum(40)
+                    40
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
