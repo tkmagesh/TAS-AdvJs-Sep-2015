@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+    (function(){
+        window.addEventListener("DOMContentLoaded", init);
+        var worker = null;
+        function init(){
+            var btnDoWork = document.getElementById("btnDoWork");
+            btnDoWork.addEventListener("click", onBtnDoWorkClick);
+
+            worker = new Worker("doWork.js");
+            worker.addEventListener("message", onWorkerMessage);
+        }
+        function onWorkerMessage(evtArg){
+            var data = evtArg.data;
+
+            if (data.type === "completed"){
+                displayMessage("Work Completed");
+            } else if (data.type === "progress"){
+                document.getElementById("workProgress").value = data.percentCompleted;
+            } else {
+                console.log("unknown message from worker - ", data);
+            }
+        }
+        function onBtnDoWorkClick(){
+
+            displayMessage("work started");
+            var request = {
+                type : 'start'
+            };
+            worker.postMessage(request);
+        }
+
+        function displayMessage(msg){
+            document.getElementById("divMessages").innerHTML += msg + "<br/>";
+        }
+    })();
+    </script>
+</head>
+<body>
+    <input type="text" name="" id="">
+    <input type="button" value="Do Work" id="btnDoWork">
+    <div><progress id="workProgress" min="0" max="100" value="0"></progress></div>
+    <div id="divMessages"></div>
+</body>
+</html>
