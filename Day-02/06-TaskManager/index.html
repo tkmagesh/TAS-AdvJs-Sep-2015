@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+    <style>
+        .completed{
+            color : red;
+            text-decoration: line-through;
+            font-style: italic;
+            font-weight: bold;
+        }
+        li{
+            cursor: pointer;
+        }
+    </style>
+    <script src="require.js" data-main="main.js"></script>
+</head>
+<body>
+    <h1>Task Manager</h1>
+    <div class="content">
+        <label for="">Task :</label>
+        <input type="text" name="" id="txtTask">
+        <input type="button" value="Add Task" id="btnAddTask">
+        <input type="button" value="Remove Completed" id="btnRemoveCompleted">
+        <ol id="olTaskList">
+
+        </ol>
+    </div>
+</body>
+</html>

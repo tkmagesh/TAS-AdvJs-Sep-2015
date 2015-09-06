@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jquery.js"></script>
+    <script src="handlebars.js"></script>
+    <script type="text/template" id="productsTemplate">
+        <table>
+       <thead>
+           <tr>
+               <th>Id</th>
+               <th>Name</th>
+               <th>Cost</th>
+               <th>Units</th>
+               <th>Value</th>
+               <th>Category</th>
+               <th></th>
+           </tr>
+       </thead>
+       <tbody>
+           {{#each list}}
+                <tr data-product-id="{{id}}">
+                    <td>{{id}}</td>
+                    <td>{{name}}</td>
+                    <td>${{cost}}</td>
+                    <td>{{units}}</td>
+                    <td>${{value}}</td>
+                    <td>{{category}}</td>
+                    <td><input type="button" value="Select" class="btnSelect"></td>
+                </tr>
+            {{/each}}
+       </tbody>
+
+    </table>
+    </script>
+    <script>
+        var products = [
+            {id : 3, name : 'Pen', cost : 50, units : 70, category : 10},
+            {id : 6, name : 'Hen', cost : 80, units : 80, category : 20},
+            {id : 8, name : 'Ten', cost : 30, units : 40, category : 10},
+            {id : 2, name : 'Den', cost : 70, units : 50, category : 20},
+            {id : 4, name : 'Zen', cost : 60, units : 20, category : 10}
+        ];
+        $(function(){
+            var templateHTML = $("#productsTemplate").html(),
+                templateFn = Handlebars.compile(templateHTML);
+            $("#btnShowProducts").click(function(){
+                var viewProducts = products.map(function(product){
+                    return {
+                        id : product.id,
+                        name : product.name,
+                        cost : product.cost,
+                        units : product.units,
+                        value : product.cost * product.units,
+                        category : product.category
+                    }
+                });
+                var productsTable = templateFn({list : viewProducts});
+                $("#productsSection").html(productsTable);
+            });
+
+            $("#productsSection").on("click",".btnSelect", function(){
+                var $this = $(this);
+                var productId = parseInt($this.parents("tr").attr("data-product-id"),10);
+                console.log(products.filter(function(p){
+                    return p.id === productId;
+                })[0]);
+            });
+        });
+    </script>
+</head>
+<body>
+    <input type="button" value="Show Products" id="btnShowProducts">
+    <section id="productsSection"></section>
+</body>
+</html>
