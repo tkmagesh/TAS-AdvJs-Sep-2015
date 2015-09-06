@@ -4,6 +4,15 @@ var f = after(function fn(){
   console.log("fn is invoked")
 },3);
 
+function after(fn, times, context){
+    var count= 0;
+    return function(){
+        ++count;
+        if (count > times){
+            return fn.apply(context || this, arguments)
+        }
+    }
+}
 f()
 f()
 f()
